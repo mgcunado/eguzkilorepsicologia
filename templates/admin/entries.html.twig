@@ -1,0 +1,87 @@
+{% extends 'articulos.html.twig' %}
+
+{% block title %}Administración del Blog{% endblock %}
+
+  {% block metatags %}
+    <meta name=”robots” content=”noindex,nofollow”>
+  {% endblock %}
+
+{% block body %}
+    <div class="container mb-5 pb-0">
+        <div class="blog-header">
+            <h1 class="blog-title">Administración del Blog</h1>
+            <p class="lead blog-description"></p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <a type="button" href="{{ path('admin_create_entry') ~ '#psicologiaenirun' }}" class="btn btn-primary pull-right">Añadir Artículo</a>
+            </div>
+            <div class="col-sm-12 blog-main">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Título</th>
+                        <th>Fecha de creación</th>
+                        <th>Modificado</th>
+                        <th>Modificar</th>                        
+                        <th>Borrar</th>         
+                    </thead>
+                    {% for blogPost in blogPosts %}
+                        <tr>
+                            <td>{{ blogPost.title|raw }}</td>
+                            <td>{{ blogPost.createdAt|date('F j, Y') |replace({
+  'January'  : 'Enero',
+  'February'  : 'Febrero',
+  'March'  : 'Marzo',
+  'April'  : 'Abril',
+  'May'  : 'Mayo',
+  'June'  : 'Junio',
+  'July'  : 'Julio',
+  'August'  : 'Agosto',
+  'September'  : 'Septiembre',
+  'October'  : 'Octubre',
+  'November'  : 'Noviembre',
+  'December' : 'Diciembre'
+})  }}
+</td>
+                            <td>{{ blogPost.updatedAt|date('F j, Y')  |replace({
+  'January'  : 'Enero',
+  'February'  : 'Febrero',
+  'March'  : 'Marzo',
+  'April'  : 'Abril',
+  'May'  : 'Mayo',
+  'June'  : 'Junio',
+  'July'  : 'Julio',
+  'August'  : 'Agosto',
+  'September'  : 'Septiembre',
+  'October'  : 'Octubre',
+  'November'  : 'Noviembre',
+  'December' : 'Diciembre'
+})  }}
+</td>
+                            <td><a class="btn btn-success" href="{{ path('admin_update_entry', {'entryId': blogPost.id}) ~ '#psicologiaenirun' }}">Modificar</a></td>
+                             <td><a class="btn btn-danger" href="{{ path('admin_delete_entry', {'entryId': blogPost.id}) ~ '#psicologiaenirun' }}"  onclick="return confirm('¿Estás segura de querer BORRAR el artículo seleccionado?')">Borrar</a></td>
+                        </tr>
+                       
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Ningún artículo disponible</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        </div>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>{% block title %}Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta name="geo.region" content="ES-PV" />
+    <meta name="geo.placename" content="Irun" />
+    <meta name="geo.position" content="43.341575;-1.787786" />
+    <meta name="ICBM" content="43.341575, -1.787786" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    {% block metatags %}
+    {% endblock %}       
+    {% block stylesheets %}
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
+
+    <!-- Matomo -->
+    <!--<script type="text/javascript">
+      var _paq = window._paq || [];
+/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//eguzkilorepsicologia.es/piwik/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+    </script>-->
+    <!-- End Matomo Code -->
+
+  </head>
+
+  <body>
+    {% block carousel %}
+    {% endblock %}
+    {% block navbar %}
+    {% endblock %}
+    {% block body %}
+    {% endblock %}
+    {% block avisoslegales %}
+      <div id="overbox3">
+        <div id="infobox3">
+          <p class='my-0 py-2'>Esta página utiliza cookies para mejorar tu experiencia de navegación. Si sigues navegando por la web aceptas su uso. <button type="button" class="btn btn-info py-0 ml-3" onclick="aceptar_cookies();" style="cursor:pointer;">Aceptar</button> <!--<a href="politica-privacidad.php">Más info</a>--></p>
+        </div>
+      </div>
+    {% endblock %}      
+
+    {% block footer %}
+      <div class="container-fluid bg-dark-morado-pie text-light">
+        <div class="row border2 border-primary border-right-0 border-bottom-0 border-left-0" style="letter-spacing: 4px">
+          <div class="col-md-2 py-2"></div>
+          <div class="col-md-8 justify-content-center py-2" style="font-size: 75%" align="center">
+            <div class="mb-2" style="font-size:130%"><nobr>Centro de Psicología</nobr> Eguzkilore</div>
+            <div class="mb-1">Psicóloga Gloria Mabel <nobr>D'Alessandro Kaiser</nobr></div>
+            <div class="mb-1" style="font-size:115%;"><i class="fas fa-mobile-alt"></i> 722 617 163 </div>
+            <div class="contacto-font-email mb-1"><a href="mailto:gloria@eguzkilorepsicologia.es" target="_top"><span class="ml-4" style="color:white;"><nobr><i class="fas fa-envelope"></i> gloria@eguzkilorepsicologia.es</nobr></span> </a>
+            </div>   
+            <nobr>Avenida Salís 19</nobr> <nobr>Bajo Derecha,</nobr> <nobr>20304 Irun (Gipuzkoa)</nobr> 
+          </div>
+          <div class="col-md-2 py-2">
+            <a href="https://www.facebook.com/CentrodePsicologiaEguzkilore"  target="_blank">
+<img src="{{ asset('images/facebook.png') }}" class="imgredes"  alt="Facebook logo">
+            </a>
+
+          </div>
+
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="col-md-1"></div>
+            <div class="col-md-2 text-center py-2 my-3"   style="border: 1px solid #888;"><a href="{{ path('app_logout') }}">Cerrar Sesión</a></div>    
+            <div class="col-md-8"></div>
+          {% endif %}               
+        </div>
+      </div>
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+  </body>
+</html>

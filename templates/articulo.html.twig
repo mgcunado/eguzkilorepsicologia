@@ -1,0 +1,9 @@
+{% extends 'frontend.html.twig' %}
+
+{% block body %}
+   <div class="container mb-5">
+      {% for textos in ppp2 %}
+         {{ textos.texto | raw }}
+      {%  endfor  %}
+   </div>
+{% endblock %}

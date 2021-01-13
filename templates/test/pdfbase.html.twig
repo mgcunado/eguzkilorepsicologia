@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>{% block title %}Centro de Psicología Eguzkilore{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name=”robots” content=”noindex,nofollow”>
+    {% block metatags %}
+    {% endblock %}       
+    {% block stylesheets %}
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
+
+    <!-- Matomo -->
+    <!--<script type="text/javascript">
+      var _paq = _paq || [];
+/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//eguzkilorepsicologia.es/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+    </script> -->
+    <!-- End Matomo Code -->      
+  </head>
+
+  <body>
+    {% block carousel %}
+    {% endblock %}
+    {% block navbar %}
+    {% endblock %}
+    {% block body %}
+    {% endblock %}
+
+    {% block footer %}
+         <div class="container-fluid bg-dark-morado text-light mt-2">
+            <div class="row border2 border-primary border-right-0 border-bottom-0 border-left-0">
+               <div class="col-md-12 justify-content-center py-2" style="font-size: 75%; letter-spacing: 3px" align="center">
+                  <span style="font-size:170%">Centro de Psicología Eguzkilore</span> &nbsp;&nbsp;{{ "now"|date("Y") }} <br>
+<span style="font-size:115%">Psicóloga Gloria Mabel D'Alessandro Kaiser</span> <br>
+<span style="font-size:115%">Avenida Salís 19 Bajo Derecha, 20304 Irun (Gipuzkoa) &nbsp;&nbsp;&nbsp; <i class="fas fa-mobile-alt"></i> 722 617 163</span>
+               </div>
+            </div>
+         </div>      
+
+    {% endblock %}      
+
+    {% block javascripts %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,6 @@
+sonata_core:
+    form:
+        mapping:
+            enabled: false
+
+     #form_type: horizontal # opcional para el estilo horizontal

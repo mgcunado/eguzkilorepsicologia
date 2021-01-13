@@ -1,0 +1,79 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}Centro de Psicología Eguzkilore : Iniciar Sesión {% endblock %}
+
+  {% block metatags %}
+    <script type="text/javascript">
+      function getAnchor() {
+        var currentUrl = document.URL,
+          urlParts   = currentUrl.split('#');
+
+        return (urlParts.length > 1) ? urlParts[1] : null;
+      }
+var anchor = getAnchor();
+if (anchor === null)
+{
+  document.write('<meta http-equiv="refresh" content="0; url=#psicologiaenirun">');
+}
+    </script>              
+
+    {#<meta http-equiv="refresh" content="0; url=#psicologiaenirun">#}
+    <meta name=”robots” content=”noindex,nofollow”>
+  {% endblock %}
+
+
+  {% block body %}
+    <div class="container mb-5 pb-0">
+
+      <div class="mx-5">
+        <h1 class="mb-4 mt-3 text-center text-azuloscuro">Iniciar Sesión</h1>
+
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+
+            <form method="post">
+              {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+              {% endif %}
+
+              {#<h3 class="mb-4">Por favor, regístrese!</h3>#}
+              <label for="inputEmail" class="sr-only">Email</label>
+              <div class="form-iniciarsesion text-right mr-2 divcuartopdf">Email: </div>
+              <div class="divmediopdf"><input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-4" placeholder="Email" required autofocus></div> 
+              <label for="inputPassword" class="sr-only">Contraseña</label>
+              <div class="form-iniciarsesion text-right mr-2 divcuartopdf">Contraseña:</div> 
+              <div class="divmediopdf"><input type="password" name="password" id="inputPassword" class="form-control mb-5" placeholder="Password" required>
+              </div>  
+
+              <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+              {#
+              Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+              See https://symfony.com/doc/current/security/remember_me.html
+
+              <div class="checkbox mb-3">
+                <label>
+                  <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+              </div>
+              #}
+              <div class="text-center diventeropdf">
+                <button class="btn btn-lg btn-primary" type="submit">
+                  Entrar
+                </button>
+              </div> 
+            </form>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+
+
+        <br><br>
+
+
+      </div>
+    </div>
+
+
+  {% endblock %}

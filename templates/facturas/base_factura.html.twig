@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>{% block title %}Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block metatags %}
+    {% endblock %}       
+
+    {% block stylesheets %}
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+      <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}" />
+
+      <style>
+.container {
+  background-color: #eddff4;
+  padding: 1rem 1rem 3rem 1rem;
+  /*padding: 25px 50px 75px 100px;*/
+  border-style: solid;
+  border-width: 1px;
+  border-color: #555;
+}
+      </style>
+
+      <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
+  </head>
+  <body style="background: #FFF; background-image: url(../images/eguzkilorepsicologia.es.png); background-repeat:no-repeat; background-size: 100% 100%;">
+
+      <div class="row my-4 mx-5 bg-logofactura">
+        <div class="col-md-2"></div>
+        <div class="col-md-9">
+          <div class="text-center text-centroeguzkilore">
+            w w w . e g u z k i l o r e p s i c o l o g i a . e s
+          </div>
+          <div class="row text-center text-light">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 bg-centroeguzkilore py-2 px-3 my-2">
+              CENTRO EGUZKILORE
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+          <div class="text-cesubtitulo mb-4">
+            individual, parejas, talleres, orientación profesional
+          </div>
+          <div class="row mb-5">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mb-5 text-center">
+              Avenida Salis 19 Bajo Derecha 20304 IRUN (GIPUZKOA)
+              <br>
+              Tfn: 722 617 163
+              <br>
+              NIF: 49.999.069J
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+   <div class="container mb-5 pb-5">
+    {% block body %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+    </div>     
+  </body>
+</html>

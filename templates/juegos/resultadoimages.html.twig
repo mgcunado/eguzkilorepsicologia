@@ -1,0 +1,60 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %} Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}
+
+	{% block metatags %}
+		<meta name="robots" content="index, follow" /> 
+	{% endblock %}
+
+	{% block body %}
+   <div class="containeranchofondo">
+   </div>
+      
+		<div class="containerancho mb-5 pb-0">
+				<div class="blog-main text-justify">
+					<div class="p-2">
+
+						<div class="gallery py-3">
+							<div class="text-center btn btn-primary btn-sm active mb-3" style="display: block; width:30%; margin-left: auto; margin-right: auto;" role="button">
+								TU ORDEN PROPUESTO
+							</div>                  
+							<ul class="">
+								{% set fallos = 0  %}
+								{% for imagenes in ppp2 %}
+									<li id="" class="p-0 m-0 {% if imagenes.imgorder != imagenes.imgorderrand %} {{ "ordenfallado" }} {% set fallos = fallos + 1  %} {% endif %}" style="width: {{ 100 // ppp2|length - 1 }}%"><img class="numerosmostrados" src="{{ asset('images/' ~ tipo ~ '/' ~ imagenes.filename ) }}" alt=""></li>
+								{%  endfor  %}
+							</ul>
+						</div>
+
+						<div class="gallery pb-3">
+							<div class="text-center btn btn-primary btn-sm active mb-3" style="display: block; width:30%; margin-left: auto; margin-right: auto;" role="button">
+								EL ORDEN CORRECTO
+							</div>                  
+							<ul class="">
+								{% for imagenes in ppp3 %}
+									<li id="" class="p-0 m-0" style="width: {{ 100 // ppp2|length - 1 }}%"><img class="numerosmostrados" src="{{ asset('images/' ~ tipo ~ '/' ~ imagenes.filename ) }}" alt=""></li>
+								{%  endfor  %}
+							</ul>
+						</div>
+
+
+					</div>              
+
+					{% if fallos == 0 %}
+						<div class="text-center btn btn-success mb-3 mt-4" style="width:100%; margin-left: auto; margin-right: auto; " role="button">
+							FELICIDADES!! HAS RESPONDIDO CORRECTAMENTE!
+						</div>
+					{% endif %}
+
+					<div class="text-center">
+						<a href="{{ path('juegos') }}" class="mt-2 btn btn-secondary btn-lg active" role="button" aria-pressed="true">
+							COMENZAR DE NUEVO</a>
+					</div>
+
+
+
+				</div>
+		</div>
+	{% endblock %}
+
+

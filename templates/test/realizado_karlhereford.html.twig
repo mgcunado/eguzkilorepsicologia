@@ -1,0 +1,81 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}Centro de Psicología Eguzkilore : Test : Intereses de Karl Hereford {% endblock %}
+
+  {% block metatags %}
+    <meta name=”robots” content=”noindex,nofollow”>
+  {% endblock %}
+
+  {% block body %}
+    <div class="container mb-5 pb-0">
+
+      <div class="mx-0">
+        <h1 class="mb-5 mt-3 text-center text-azuloscuro">Resultado del Test de Intereses de Karl Hereford</h1>
+
+        <div class="row">        
+          <div class="text-center text-dark bg-nombreedadsexo0 pl-4 py-0 col-md-6" >Nombre: <strong>{{ nombre }} </strong> </div>
+          <div class="text-center text-dark bg-nombreedadsexo pl-4 py-0 col-md-3" >Edad: <strong>{{ edad }} </strong> </div>
+          <div class="text-center text-dark bg-nombreedadsexo2 pl-4 py-0 col-md-3" >Sexo: <strong>{{ sexo }} </strong> </div>
+        </div>
+
+        <br><br>
+
+        {% set arrayordenado = arrayordenado|sort|reverse %}
+
+        <div class="row text-light bg-dark-morado- py-3 mt-4">
+          <div class="col-md-12 d-flex justify-content-center"><h3 class="mb-0" style="text-align:center;">Clasificación</h3></div>
+        </div>
+        <div class="row">
+          <div class="text-light bg-middledark-morado col-md-12 text-center font-weight-bold py-2" >Intereses Dominantes:</div>
+
+          {% set a = 1 %}
+
+          {% for slug, item in arrayordenado %}
+
+            {% if a==1 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" > {{ 'Primer lugar ' }} </div>
+            {% elseif a==2 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" >                   {{ 'Segundo lugar ' }} </div>
+            {% elseif a==3 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" >                  {{ 'Tercer lugar ' }} </div>
+            {% elseif a==4 %}
+              <div class="text-center text-light bg-middledark-morado py-0 col-md-12" > </div>
+            {% endif %}
+
+            {% if a < 4 %}
+              <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-12">
+                {{ slug ~ ' : ' ~ item }}
+              </div>
+            {% else %}
+              <div class="align-middle text-center bg-gris-datos pt-2 pb-4 col-md-12">
+                {{ slug ~ ' : ' ~ item }}
+              </div>
+            {% endif %}
+
+            {% set a = a + 1 %}
+
+
+          {% endfor %}
+
+          <div class="text-light col-md-12 text-center font-weight-bold py-2" >
+            <img src="{{ asset('images/jpgraph/graficotest1.php?pctCalculo=' ~ pctCalculo ~ '&pctC_fisico=' ~ pctC_fisico ~ '&pctC_biologico=' ~ pctC_biologico ~ '&pctMecanico=' ~ pctMecanico ~ '&pctServiciosocial=' ~ pctServiciosocial ~ '&pctLiterario=' ~ pctLiterario ~ '&pctPersuasivo=' ~ pctPersuasivo ~ '&pctArtistico=' ~ pctArtistico ~ '&pctMusico=' ~ pctMusico ) }}">           
+          </div>
+
+        </div>
+
+        {# archivo PDF #}
+        
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3 pt-5">
+            <a class="nav-link" href="{{ path('test_karlhereford_pdf', {'nombre': nombre, 'edad': edad, 'sexo': sexo, 'Calculo' : Calculo, 'C_fisico' : C_fisico, 'C_biologico' : C_biologico, 'Mecanico' : Mecanico, 'Serviciosocial' : Serviciosocial, 'Literario' : Literario, 'Persuasivo' : Persuasivo, 'Artistico' : Artistico, 'Musico' : Musico, 'arrayordenado' : arrayordenado, 'pctCalculo' : pctCalculo, 'pctC_fisico' : pctC_fisico, 'pctC_biologico' : pctC_biologico, 'pctMecanico' : pctMecanico, 'pctServiciosocial' : pctServiciosocial, 'pctLiterario' : pctLiterario, 'pctPersuasivo' : pctPersuasivo, 'pctArtistico' : pctArtistico, 'pctMusico' : pctMusico }) }}"  >Descargar PDF<br><img src="{{ asset('images/pdficon.png') }}"></a>
+          </div>
+        </div>
+
+
+        {# fin archivo PDF #}
+
+      </div>
+    </div>
+  {% endblock %}
+

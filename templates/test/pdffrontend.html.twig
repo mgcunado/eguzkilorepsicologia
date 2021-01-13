@@ -1,0 +1,53 @@
+{% extends 'test/pdfbase.html.twig' %}
+
+{% block stylesheets %}
+   <!-- Bootstrap CSS -->
+   {#   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+   <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}" /> #}
+   <link rel="stylesheet" href="{{ pathToWeb ~ '/css/bootstrap.css' }}" />
+   <link rel="stylesheet" href="{{ pathToWeb ~ '/css/fontawesome-all.css' }}" />
+
+
+   <style>       
+.container {
+   background-color: #eddff4;
+   padding: 0rem 0rem 0rem 0rem;      
+   /*padding: 25px 50px 75px 100px;*/
+   border-style: solid;
+   border-width: 1px;
+   border-color: #555;
+}     
+   </style>
+
+   <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">    
+   <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">   
+   <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet"> 
+{% endblock %}
+
+
+{% block javascripts %}
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   {# los siguientes archivos js min
+   <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"> </script>
+   <script src="{{ asset('js/popper.min.js') }}"> </script>
+   <script src="{{ asset('js/bootstrap.min.js') }}"> </script>
+   #}
+   {# el siguiente archivo da error en la producción del pdf #}
+   {#<script src="{{ asset('js/jquery-3.2.1.slim.js') }}"> </script>#}
+
+   <script src="{{ pathToWeb ~ '/js/popper.js' }}"> </script>
+   <script src="{{ pathToWeb ~ '/js/bootstrap.js' }}"> </script>
+   <!-- avisos legales -->
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="{{ pathToWeb ~ '/js/cookies.js' }}"> </script>
+
+   <script src="{{ pathToWeb ~ '/js/ckeditor/adapters/jquery.js' }}" type="text/javascript"></script>
+   <script src="{{ pathToWeb ~ '/js/ckeditor/ckeditor.js' }}" type="text/javascript"></script>
+   <script type="text/javascript">
+      $(function() {
+         $('textarea.ckeditor').ckeditor();
+      });
+   </script>
+{% endblock %}

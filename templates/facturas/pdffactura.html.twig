@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>{% block title %}Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block metatags %}
+    {% endblock %}       
+
+    {% block stylesheets %}
+      <!-- Bootstrap CSS -->
+      {#<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+      <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}" />#}
+      <link rel="stylesheet" href="{{ pathToWeb ~ '/css/bootstrap.css' }}" />
+      <link rel="stylesheet" href="{{ pathToWeb ~ '/css/fontawesome-all.css' }}" />
+
+
+      <style>
+.container {
+  background-color: #eddff4;
+  padding: 1rem 1rem 3rem 1rem;
+  /*padding: 25px 50px 75px 100px;*/
+  border-style: solid;
+  border-width: 1px;
+  border-color: #555;
+}
+      </style>
+
+      <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
+  </head>
+  <body style="background: #FFF; background-image: url({{ pathToWeb ~ '/images/eguzkilorepsicologia.es.png' }}); background-repeat:no-repeat; background-size: 100% 100%;">
+    {% block body %}
+      {% for factura in ppp1 %}
+        <div class="row my-4 mx-5">
+          <div class="diventeropdf" style="min-height: 5px;">&nbsp;</div>
+
+          <div class="divterciopdf bg-logofactura" style="min-height: 250px;">&nbsp;</div>
+          <div class="divdosterciospdf mt-5">
+             <div class="row">
+              <div class="divcincodoceavospdf text-left mb-3 ml-7">
+                 <div  class="p-2 mr-4 text-center border border-primary rounded">
+                  FECHA
+                  <hr class="my-0 py-0">
+                  {{ factura.fechafactura|date('d-m-Y') }}  
+                </div> 
+              </div> 
+              <div class="divsextopdf">&nbsp;</div>
+              <div class="divcuartopdf">
+                <div class="px-1 py-2 mr-4 mb-4 text-center bg-secondary-dark text-light rounded-plus">
+                  Factura Nº:<br>
+                  {{ factura.numerofactura }}
+                </div>
+
+              </div>
+            </div> 
+            
+            <div class="text-center text-centroeguzkilore">
+              www.eguzkilorepsicologia.es
+            </div> 
+            <div class="text-center text-light bg-centroeguzkilore py-2 px-1 mx-2 my-2">
+              CENTRO EGUZKILORE
+            </div> 
+            <div class="text-cesubtitulo mb-3">
+              individual, parejas, talleres, orientación profesional
+            </div> 
+              <div class="text-left mb-5 ml-7">
+                Avenida Salis 19 Bajo Derecha 20304 IRUN (GIPUZKOA)
+                <br>
+                NIF: 49.999.069J Tfn: 722 617 163
+              </div> 
+            </div> 
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="divterciopdf text-center border border-primary rounded my-5 ml-5" >
+            MODO DE PAGO
+            <hr class="my-0 py-0">
+            {{ factura.modopago }}
+          </div>
+          <div class="divdoceavopdf my-5">&nbsp;</div>
+          <div class="divmediopdf text-center border border-primary rounded my-5 mr-4 ml-1">
+            {{ factura.nombre }}
+            <hr class="my-0 py-0"> {{ factura.direccion }}
+          </div>
+        </div>
+
+        <div class="row mx-3">
+          <div class="pb-5 divdoceavopdf text-center border border-primary" style="min-height:350px;">
+            REF
+            <hr class="my-1 py-0">
+            {{ factura.referencia }}
+          </div>
+          <div class="pb-5 divmediopdf text-center border-top-1 border-bottom-1 border-right-1 border-primary" style="min-height:350px;">
+            CONCEPTO
+            <hr class="my-1 py-0">
+            {{ factura.producto }}
+          </div>
+          <div class="pb-5 divcuartopdf text-center border-top-1 border-bottom-1 border-primary" style="min-height:350px;">
+            DURACION
+            <hr class="my-1 py-0">
+            {{ factura.duracion }}
+          </div>
+          <div class="pb-5 divsextopdf text-center border border-primary" style="min-height:350px;">
+            IMPORTE
+            <hr class="my-1 py-0">
+            {{ factura.importe }}
+          </div>
+        </div>
+
+        <div class="row mx-3">
+          <div class="divsietedoceavospdf my-5">&nbsp;</div>
+          <div class="divcincodoceavospdf my-5 text-center border border-primary rounded">
+            <div class="row">
+              <div class="divterciopdf border-right-1">
+
+                <div class="my-2">&nbsp;</div>  
+                <div class="my-2">SUBTOTAL</div>  
+                <div class="my-2">IVA(21%)</div>  
+                <div class="my-2">TOTAL</div>  
+              </div>
+              <div class="divdosterciospdf">
+                <div class="my-2">{{ 'EUROS' }}</div>  
+                <hr class="my-0 py-0 mx-5">
+                <div class="my-2"> {{ factura.importe }} &euro;</div>       
+                <div class="my-2">{{ (factura.importe * 0.21)|number_format(2, '.', ',') }} &euro;</div>    
+                <div class="my-2">{{ (factura.importe * 1.21)|number_format(0, '.', ',') }} &euro;</div>  
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {%  endfor  %}
+
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+  </body>
+</html>

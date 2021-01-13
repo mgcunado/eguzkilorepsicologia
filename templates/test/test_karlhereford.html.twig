@@ -1,0 +1,62 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}Centro de Psicología Eguzkilore : Test : Karl Hereford {% endblock %}
+
+  {% block metatags %}
+    <meta name=”robots” content=”noindex,nofollow”>
+  {% endblock %}
+
+  {% block body %}
+    <div class="container mb-5 pb-0">
+
+      <div class="mx-5">        
+        <h1 class="mb-5 mt-3 text-center text-azuloscuro">Test Karl Hereford</h1>
+
+
+        {% set preguntas = ['0']  %}
+        {% set ides = [0]  %}
+
+        {% for columna in ppp2 %}
+          {% set preguntas = preguntas|merge([columna.pregunta]) %}
+          {% set ides = ides|merge([columna.id]) %}
+        {% endfor %}
+
+
+        {{ form_start(form) }}
+
+        {{ form_errors(form) }}
+
+        <div class="row">
+          <div class="col-md-6">
+            {{ form_row(form.nombre, { 'attr': {'size': '40'} }) }}
+          </div>
+          <div class="col-md-3">{{ form_row(form.edad, { 'attr': {'size': '4'} }) }}</div>
+          <div class="col-md-3">{{ form_row(form.sexo) }}</div>
+        </div>
+
+
+        <br><br>
+
+        <div class="col-md-12">
+          <h2 class="mb-5">Indica tu preferencia para las siguientes actividades:</h2>
+        </div>
+
+        {% for age in range(1, 90) %}
+          {{ age ~ '. ' ~ preguntas[age] }} <br>
+          <div class="bg-grisclaro p-2 ml-4">
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="1">No me interesa nada
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="2">No me interesa
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="3">Me es indiferente      
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="4">Me interesa
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="5">Me interesa mucho      
+          </div>
+
+          <br><br>
+        {% endfor %}
+
+        {{ form_end(form) }}
+
+      </div>
+    </div>
+  {% endblock %}
+

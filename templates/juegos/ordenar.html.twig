@@ -1,0 +1,122 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}
+	Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore
+{% endblock %}
+
+{% block metatags %}
+	<meta name="robots" content="index, follow" /> 
+{% endblock %}
+
+{% block body %}
+
+	<div class="containeranchofondo">
+	</div>
+
+	<div class="containerancho mb-5 pb-0">
+			<div class="blog-main text-justify">
+				<div class="p-2">
+
+					<!--<div class="text-center my-3 btn btn-secondary btn-lg active" style="display:block; margin:auto; width:50%;" role="button" aria-pressed="true">
+		  ORDENANDO IMÁGENES
+		  </div>
+
+		  <div id="reorder-helper" class="light_box" style="display:none; margin:auto; width:50%;">
+		  1. Arrastrar las Imágenes para reordenarlas.<br>2. Haz Click en 'COMPROBAR ORDENAMIENTO' cuando termines.
+		  </div>-->               
+		  <div class="gallery py-3"  style="position: fixed; top: 25%;">
+			  <ul id="sortable" class="reorder_ul reorder-photos-list">
+				  {% for imagenes in ppp2 %}
+                 {#                 <li id="{{ 'image_li_' ~ imagenes.id }}" class="ui-sortable-handle p-0 m-0" style="{% if ppp2|length > 8 %} width:9%; {% elseif ppp2|length > 5 and ppp2|length < 9 %} width:11%; {% else %} width:18%; {% endif %}"><a href="javascript:void(0);" style="float:none;" class="image_link"><img class="numerosmostrados" src="{{ asset('images/' ~ tipo ~ '/' ~ imagenes.filename ) }}" alt=""></a></li> #}
+                 <li id="{{ 'image_li_' ~ imagenes.id }}" class="ui-sortable-handle p-0 m-0" style="width: {{ 100 // ppp2|length - 1 }}%"><a href="javascript:void(0);" style="float:none;" class="image_link"><img class="numerosmostrados" src="{{ asset('images/' ~ tipo ~ '/' ~ imagenes.filename ) }}" alt=""></a></li>
+				  {%  endfor  %}
+			  </ul>
+		  </div>
+
+		  <div id="comprobamosorden" class="text-center">
+			  {#<a href="{{ path('ordenarimages') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">#}
+				  <a href="javascript:void(0);" class="btn outlined mleft_no reorder_link" id="save_reorder">comprobar ordenamiento</a>
+		  </div>
+
+				</div>              
+			</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+					/*   $('.reorder_link').on('click',function(){*/
+					//$("ul.reorder-photos-list").sortable({ tolerance: 'pointer' });
+					$("#sortable").sortable({
+								revert: true,
+								stop: function(event, ui) {
+											if(!ui.item.data('tag') && !ui.item.data('handle')) {
+														ui.item.data('tag', true);
+														ui.item.fadeTo(400, 0.8);
+													}
+										}
+							});
+					/*$('li.ui-sortable-handle').draggable({
+	  scroll: false,
+	  containment: "#bg-container",
+
+	  start: function( event, ui ) {
+	  console.log("start top is :" + ui.position.top)
+	  console.log("start left is :" + ui.position.left)
+	  },
+	  drag: function(event, ui) {
+	  console.log('draging.....');    
+	  },
+	  stop: function( event, ui ) {
+	  console.log("stop top is :" + ui.position.top)
+	  console.log("stop left is :" + ui.position.left)
+
+		//alert('left:'+ui.position.left + ' top:'+ui.position.top)
+	  }    
+	  });*/
+		$("#draggable").draggable({
+					connectToSortable: '#sortable',
+					helper: 'clone',
+					revert: 'invalid'
+				});
+					//$("ul, li").disableSelection();
+					$('.reorder_link').html('comprobar ordenamiento');
+					$('.reorder_link').attr("id","save_reorder");
+					$('#reorder-helper').slideDown('slow');
+					$('.image_link').attr("href","javascript:void(0);");
+					$('.image_link').css("cursor","move");
+					$("#save_reorder").click(function( e ){
+								if( !$("#save_reorder i").length ){
+											//$(this).html('').prepend('<img src="images/refresh-animated.gif"/>');
+											//$("ul.reorder-photos-list").sortable('destroy');
+											//$("#reorder-helper").html( "Reordering Photos - This could take a moment. Please don't navigate away from this page." ).removeClass('light_box').addClass('notice notice_error');
+
+											var h = [];
+											$("ul.reorder-photos-list li").each(function() {  h.push($(this).attr('id').substr(9));  });
+
+											$.ajax({
+														type: "POST",
+														//url: "orderUpdate.php",
+														url:"{{ path('updateordenarimages', {tipo: tipo }) }}",
+														data: {ids: " " + h + ""},
+														success: function(){
+																	//window.location.reload();
+																	//var url = "resultado.php"; 
+																	var url = "{{ path('resultadoimages', {tipo: tipo }) }}"; 
+																	$(location).attr('href',url);
+																}
+													});
+											return false;
+										}   
+								e.preventDefault();     
+							});
+					/*  });*/
+		});
+	</script>
+{% endblock %}

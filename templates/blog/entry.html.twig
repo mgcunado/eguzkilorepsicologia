@@ -1,0 +1,82 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %} {{ blogPost.title|striptags }} - Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}
+
+{% block metatags %}
+<meta name="robots" content="index, follow" /> 
+{% endblock %}
+  
+   {% block body %}
+      <div class="container mb-5 pb-0">
+         {#<div class="blog-header">
+            <h1 class="blog-title">Blog del Centro de Psicología Eguzkilore en Irun</h1>
+            <p class="lead blog-description">Se presenta este Blog en el que abordaré temática en Psicología de actualidad o que pudiear interesar al público.</p>
+         </div>#}
+
+         <div class="row">
+            <div class="col-md-12 blog-main text-justify">
+               <div class="blog-post">
+                  <h2 class="blog-post-title">{{ blogPost.title|raw }}</h2>
+                  <p class="blog-post-meta">
+                  {{ blogPost.getCreatedAt|date('l') |replace({
+                  'Monday'   : 'Lunes',
+                  'Tuesday' : 'Martes',
+                  'Wednesday' : 'Miercoles',
+                  'Thursday' : 'Jueves',
+                  'Friday' : 'Viernes',
+                  'Saturday' : 'Sábado',
+                  'Sunday'   : 'Domingo'
+                  }) ~ ', ' }}  
+
+                  {{ blogPost.getCreatedAt|date('j') ~ ' de ' }}
+
+
+                  {{ blogPost.getCreatedAt|date('F') |replace({
+                  'January'  : 'Enero',
+                  'February'  : 'Febrero',
+                  'March'  : 'Marzo',
+                  'April'  : 'Abril',
+                  'May'  : 'Mayo',
+                  'June'  : 'Junio',
+                  'July'  : 'Julio',
+                  'August'  : 'Agosto',
+                  'September'  : 'Septiembre',
+                  'October'  : 'Octubre',
+                  'November'  : 'Noviembre',
+                  'December' : 'Diciembre'
+                  }) ~ ' de ' }}
+
+                  {{ blogPost.getCreatedAt|date('Y') }} <br>  {{ ' escrito por la Psicóloga ' }}
+
+                     <a href="{{ path('sobremi') ~ '#psicologiaenirun' }}">
+                        {{ 'Gloria D\'Alessandro' }}
+                     </a>    
+                  </p>
+
+                  <div class="resumenarticulo-font pt-3 pb-4">{{ blogPost.description|raw }}</div>
+
+                  <div class="articulo-font pb-2">{{ blogPost.body|raw }}</div>
+
+               <div class="col-md-12 justify-content-center text-info bg-light py-4" style="font-size: 75%" align="center">
+                  &copy; Copyright. Todos los derechos reservados. {{ "now"|date("Y") }}  <br>
+               </div>
+                  
+
+               <nav class="navbar navbar-default navbar-fixed-top">
+                  <div id="navbar" class="navbar navbar-expand-lg">
+                     <ul class="pager nav navbar-nav pb-2">
+                           <li>
+                              <a href="{{ path('blog') ~ '#psicologiaenirun' }}">
+                                 Ver más artículos
+                              </a>
+                           </li>
+                     </ul>
+                  </div>
+               </nav>
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+   {% endblock %}

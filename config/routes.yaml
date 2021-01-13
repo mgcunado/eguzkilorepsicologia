@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+inicioraiz:
+    path: /
+    controller: App\Controller\MenuController::inicioraizAction
+
+inicio:
+    path: /
+    controller: App\Controller\MenuController::inicioAction

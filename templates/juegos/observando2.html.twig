@@ -1,0 +1,238 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}
+   Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore
+{% endblock %}
+
+{% block metatags %}
+   <meta name="robots" content="index, follow" /> 
+{% endblock %}
+
+{% block body %}
+   <style>
+      .carta {
+         width: 4%;
+         margin-left: 2%;
+         float: left;
+         display: inherit;
+      }
+
+      #comprobar {
+         position: absolute;
+         left: 20px;
+         top: 490px;
+         z-index: 9999999999999999999999999;
+      }
+
+      #uno {
+         position: absolute;
+         left: {{ xarray.0 ~ '%' }};
+         top: {{ yarray.0 ~ '%' }};
+         z-index: 1;
+      }
+
+      #dos {
+         position: absolute;
+         left: {{ xarray.1 ~ '%' }};
+         top: {{ yarray.1 ~ '%' }};
+         z-index: 2;
+      }
+
+      #tres { 
+         position: absolute;
+         left: {{ xarray.2 ~ '%' }};
+         top: {{ yarray.2 ~ '%' }};
+         z-index: 3;
+      }
+
+      #cuatro {
+         position: absolute;
+         left: {{ xarray.3 ~ '%' }};
+         top: {{ yarray.3 ~ '%' }};
+         z-index: 4;
+      }
+
+      #cinco {
+         position: absolute;
+         {% if xarray.4 is defined %}
+            left: {{ xarray.4 ~ '%' }};
+            top: {{ yarray.4 ~ '%' }};
+         {% endif %}
+         z-index: 5;
+      }
+
+      #seis {
+         position: absolute;
+         {% if xarray.5 is defined %}
+            left: {{ xarray.5 ~ '%' }};
+            top: {{ yarray.5 ~ '%' }};
+         {% endif %}
+         z-index: 6;
+      }
+      #siete {
+         position: absolute;
+         {% if xarray.6 is defined %}
+            left: {{ xarray.6 ~ '%' }};
+            top: {{ yarray.6 ~ '%' }};
+         {% endif %}
+         z-index: 7;
+      }
+      #ocho {
+         position: absolute;
+         {% if xarray.7 is defined %}
+            left: {{ xarray.7 ~ '%' }};
+            top: {{ yarray.7 ~ '%' }};
+         {% endif %}
+         z-index: 8;
+      }
+      #nueve {
+         position: absolute;
+         {% if xarray.8 is defined %}
+            left: {{ xarray.8 ~ '%' }};
+            top: {{ yarray.8 ~ '%' }};
+         {% endif %}
+         z-index: 9;
+      }
+      #diez {
+         position: absolute;
+         {% if xarray.9 is defined %}
+            left: {{ xarray.9 ~ '%' }};
+            top: {{ yarray.9 ~ '%' }};
+         {% endif %}
+         z-index: 10;
+      }
+   </style>
+
+   <div class="containeranchofondo">
+   </div>
+
+   <div class="containerancho mb-5 pb-0">
+      <div class="carta" >
+         <img id="{{ c.0 }}" src="{{ asset('images/geometria/' ~ y.0 ) }}">
+      </div>
+
+      <div class="carta">
+         <img id="{{ c.1 }}" src="{{ asset('images/geometria/' ~ y.1 ) }}">
+      </div>
+
+      <div class="carta">
+         <img id="{{ c.2 }}" src="{{ asset('images/geometria/' ~ y.2 ) }}">
+      </div>
+
+      <div class="carta">
+         <img id="{{ c.3 }}" src="{{ asset('images/geometria/' ~ y.3 ) }}">
+      </div>
+
+      {% if c.4 is defined %}
+         <div class="carta" >
+            <img id="{{ c.4 }}" src="{{ asset('images/geometria/' ~ y.4 ) }}">
+         </div>
+      {% endif %}
+
+      {% if c.5 is defined %}
+         <div class="carta" >
+            <img id="{{ c.5 }}" src="{{ asset('images/geometria/' ~ y.5 ) }}">
+         </div>
+      {% endif %}
+
+      {% if c.6 is defined %}
+         <div class="carta" >
+            <img id="{{ c.6 }}" src="{{ asset('images/geometria/' ~ y.6 ) }}">
+         </div>
+      {% endif %}
+
+      {% if c.7 is defined %}
+         <div class="carta" >
+            <img id="{{ c.7 }}" src="{{ asset('images/geometria/' ~ y.7 ) }}">
+         </div>
+      {% endif %}
+
+      {% if c.8 is defined %}
+         <div class="carta" >
+            <img id="{{ c.8 }}" src="{{ asset('images/geometria/' ~ y.8 ) }}">
+         </div>
+      {% endif %}
+
+      {% if c.9 is defined %}
+         <div class="carta" >
+            <img id="{{ c.9 }}" src="{{ asset('images/geometria/' ~ y.9 ) }}">
+         </div>
+      {% endif %}
+
+      {# botón comprobar imágenes desaparecidas #}
+      <div id="comprobamosdesapariciones"  class="midiv2" style="display:none;">
+         <a href="javascript:void(0);" class="btn outlined mleft_no reorder_link" id="">Comprobar Desapariciones</a>
+      </div>  
+      {# fin botón comprobar imágenes desaparecidas #}
+
+      {# botón para salir y volver a juegos #}
+      <div id="saliryvolverajuegos">
+         <a href="{{ path('juegos') }}" class="midiv2  btn btn-primary active botonjuegos" role="button" aria-pressed="true" style="display:none;">
+            <h4>Salir y Volver a Juegos</h4></a>
+      </div>  
+      {# fin botón comprobar imágenes desaparecidas #}
+
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+   {{ parent() }}
+
+   {% set milisegundos = cantidadimages * 1000 %}
+   <script type="text/javascript">
+
+   </script>   
+   <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>   
+   <script type="text/javascript">
+      //Funcion que hace desaparecer el div transcurridos 3000 milisegundos!
+      $(document).ready(function() {
+               setTimeout(function() {
+                        // Declaramos la capa mediante una clase para ocultarlo
+                        $( "{{ '#' ~ primerdesaparecido }}" ).fadeOut(0);
+                     }, {{ milisegundos }} );
+
+               setTimeout(function() {
+                        // Declaramos la capa mediante una clase para ocultarlo
+                        $( "{{ '#' ~ segundodesaparecido }}" ).fadeOut(0);
+                     }, {{ milisegundos }} );
+
+               setTimeout(function() {
+                        $( "{{ '#' ~ tercerdesaparecido }}" ).fadeOut(0);
+                     }, {{ milisegundos }} );
+
+               setTimeout(function() {
+                        $( "{{ '#' ~ cuartodesaparecido }}" ).fadeOut(0);
+                     }, {{ milisegundos }} );
+
+            });
+
+      $(document).ready(function() {
+               setTimeout(function() {
+                        // Declaramos la capa  mediante una clase para ocultarlo
+                        $(".midiv2").fadeIn(1500);
+                        // Transcurridos x milisegundos aparecera la capa midiv2
+                     }, {{ milisegundos }} );
+
+               $('.reorder_link').on('click',function(){
+                        setTimeout(function() {            
+                                 $( "{{ '#' ~ primerdesaparecido }}" ).fadeIn(1000);
+                                 $( "{{ '#' ~ primerdesaparecido }}" ).css("border","5px solid #f00");
+                              }, 0 );
+                        setTimeout(function() {            
+                                 $( "{{ '#' ~ segundodesaparecido }}" ).fadeIn(1000);
+                                 $( "{{ '#' ~ segundodesaparecido }}" ).css("border","5px solid #f00");
+                              }, 0 );
+                        setTimeout(function() {            
+                                 $( "{{ '#' ~ tercerdesaparecido }}" ).fadeIn(1000);
+                                 $( "{{ '#' ~ tercerdesaparecido }}" ).css("border","5px solid #f00");
+                              }, 0 );
+                        setTimeout(function() {            
+                                 $( "{{ '#' ~ cuartodesaparecido }}" ).fadeIn(1000);
+                                 $( "{{ '#' ~ cuartodesaparecido }}" ).css("border","5px solid #f00");
+                              }, 0 );
+                     });
+            });
+   </script>
+
+{% endblock %}
+

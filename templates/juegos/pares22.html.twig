@@ -1,0 +1,235 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}
+   Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore
+{% endblock %}
+
+{% block metatags %}
+   <meta name="robots" content="index, follow" /> 
+{% endblock %}
+
+{% block body %}
+   <style>
+.carta {
+   width: 4%;
+   margin-left: 2%;
+   float: left;
+   display: inherit;
+}
+
+.crono_wrapper {
+	text-align:center;
+	width:20%;
+	height:4% !important;
+	position : absolute;
+	top : 1%;
+	left : 2%;
+   background-color: #aaa;
+   z-index: 9999;
+}
+
+.botonjuegos {
+	text-align:center;
+	/*width:30%;*/
+	 height: 4%;
+position : absolute;
+	top : 1%;
+	left : 52%;
+   background-color: #00f;
+   z-index: 9999;
+}
+
+
+   #comprobar {
+      position: absolute;
+      left: 20px;
+      top: 490px;
+      z-index: 9999;
+   }
+
+   {#		{% for i in 0..19 %}
+      {{ '#' ~ ordinalesenorden[i] }} {
+         position: absolute;
+         left: {{ xarray[i] ~ 'px' }};
+         top: {{ yarray[i] ~ 'px' }};
+      }#}
+
+{% for i in 0..19 %}
+   {{ '#' ~ ordinalesenorden[i] }} {
+      position: absolute;
+      left: {{ xarray[i] ~ '%' }};
+      top: {{ yarray[i] ~ '%' }};
+   }
+{% endfor %}
+
+   </style>
+   <div class="containeranchofondo">
+   </div>
+
+   <div class="containerancho mb-5 pb-0">
+
+      <div id="algo"></div>
+
+      {% for i in 0..19 %}
+         <div class="carta" >
+            <img id="{{ ordinales[i] }}" class="{{ 'atapon' ~ i }} paresmostrados" src="{{ asset('images/animales/' ~ imagenes[i] ) }}">
+            <img id="{{ ordinales[i] }}" style="z-index:99;" class="{{ 'tapon' ~ i }} paresmostrados" src="{{ asset('images/eguzkilorejuegos.png' ) }}">
+         </div>
+      {% endfor %}
+
+      <div class="crono_wrapper">
+         <h2 id='crono'>00:00:00</h2>
+         {#<input type="button" value="Empezar" onclick="empezarDetener(this);">#}
+      </div>
+
+       <div>
+               <a href="{{ path('juegos') }}" class="btn btn-primary active botonjuegos" role="button" aria-pressed="true">
+                   <h4>Salir y Volver a Juegos</h4></a>
+      </div>
+
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+   {{ parent() }}
+
+   {% set milisegundos = cantidadimages * 1000 %}
+   <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>   
+   <script type="text/javascript">
+      var  par = 0;
+      var primerelemento = 0;
+      var segundoelemento = 0;
+      var primeri = 0;
+      var segundoi = 0;
+      var paresdescubiertos = 0;
+
+      $(document).ready(function() {
+               empezarDetener(this);
+               {% for i in 0..19 %}
+
+                  $("{{ '.tapon' ~ i }}").css("cursor","pointer");
+
+               $("{{ '.tapon' ~ i }}").click( function( event ){
+                        {% if i < 10 %}
+                           {% set  ii = i + 1 %} 
+                        {% else %}
+                           {% set  ii = i - 9 %} 
+                        {% endif %}
+
+                        if (par < 1) {
+                                 setTimeout(function() {
+                                          $( "{{ '.tapon' ~ i }}" ).fadeOut(500);
+                                       }, 0 );
+                                 $( "{{ '.tapon' ~ i }}" ).addClass("descubiertouno");
+                                 $( "{{ '.atapon' ~ i }}" ).addClass("adescubiertouno");
+                                 par = par + 1;
+                                 primerelemento = {{ ii }};
+                                 primeri = {{ i }};
+                              } else {
+                                       setTimeout(function() {
+           $( "{{ '.tapon' ~ i }}" ).fadeOut(500);
+           }, 0 );
+           $( "{{ '.tapon' ~ i }}" ).addClass("descubiertodos");
+           $( "{{ '.atapon' ~ i }}" ).addClass("adescubiertodos");
+           segundoelemento = {{ ii }};
+           segundoi = {{ i }};
+
+           if (primerelemento != segundoelemento) {
+           document.getElementById('algo').style.visibility='visible';
+           setTimeout(function() {
+           $( "{{ '.descubiertouno' }}" ).fadeIn(500);
+           $( "{{ '.descubiertodos' }}" ).fadeIn(500);
+           $('.descubiertouno').each(function(){
+           $(this).removeClass('descubiertouno');
+           });
+           $('.descubiertodos').each(function(){
+           $(this).removeClass('descubiertodos');
+           });
+           $('.adescubiertouno').each(function(){
+           $(this).removeClass('adescubiertouno');
+           });
+           $('.adescubiertodos').each(function(){
+           $(this).removeClass('adescubiertodos');
+           });
+           document.getElementById('algo').style.visibility='hidden';
+           }, 3000 );
+           par = 0;
+           } else if (primeri != segundoi) {
+           $('.descubiertouno').each(function(){
+           $(this).removeClass('descubiertouno');
+           });
+           $('.descubiertodos').each(function(){
+           $(this).removeClass('descubiertodos');
+           });
+           $('.adescubiertouno').each(function(){
+           $(this).addClass('parlocalizado');
+           $(this).removeClass('adescubiertouno');
+           });
+           $('.adescubiertodos').each(function(){
+           $(this).addClass('parlocalizado');
+           $(this).removeClass('adescubiertodos');
+           });
+           $('.parlocalizado').each(function(){
+           $(this).css('border', '5px solid #0f0');
+           });
+           par = 0;
+           paresdescubiertos = paresdescubiertos + 1;
+           if (paresdescubiertos == 10) {
+           empezarDetener(this);
+           }
+           }
+           } 
+           });
+               {% endfor %}         
+           });
+   </script>
+
+   <script>
+      var inicio=0;
+      var timeout=0;
+
+      function empezarDetener(elemento)
+      {
+               if(timeout==0)
+               {
+                        // empezar el cronometro
+                        elemento.value="Detener";
+
+                        // Obtenemos el valor actual
+                        inicio=vuelta=new Date().getTime();
+
+                        // iniciamos el proceso
+                        funcionando();
+                     }else{
+                              // detemer el cronometro
+                              elemento.value="Empezar";
+                              clearTimeout(timeout);
+                              timeout=0;
+                           }
+            }
+
+      function funcionando()
+      {
+               // obteneos la fecha actual
+               var actual = new Date().getTime();
+
+               // obtenemos la diferencia entre la fecha actual y la de inicio
+               var diff=new Date(actual-inicio);
+
+               // mostramos la diferencia entre la fecha actual y la inicial
+               var result=LeadingZero(diff.getUTCHours())+":"+LeadingZero(diff.getUTCMinutes())+":"+LeadingZero(diff.getUTCSeconds());
+
+               document.getElementById('crono').innerHTML = result;
+
+               // Indicamos que se ejecute esta función nuevamente dentro de 1 segundo
+               timeout=setTimeout("funcionando()",1000);
+            }
+
+      /* Funcion que pone un 0 delante de un valor si es necesario */
+      function LeadingZero(Time) {
+               return (Time < 10) ? "0" + Time : + Time;
+            }
+   </script>
+
+{% endblock %}
+

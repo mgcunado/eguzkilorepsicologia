@@ -1,0 +1,60 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}Centro de Psicología Eguzkilore : Test : Intereses de Aptitudes {% endblock %}
+
+  {% block metatags %}
+    <meta name=”robots” content=”noindex,nofollow”>
+  {% endblock %}
+
+  {% block body %}
+    <div class="container mb-5 pb-0">
+
+      <div class="mx-5">        
+        <h1 class="mb-1 mt-3 text-center text-azuloscuro">Test Intereses de Aptitudes</h1>
+        <h3 class="mb-5 mt-0 text-center text-azuloscuro">(de Ismael Vidales Delgado)</h3>
+
+
+
+        {% set preguntas = ['0']  %}
+        {% set ides = [0]  %}
+
+        {% for columna in ppp2 %}
+          {% set preguntas = preguntas|merge([columna.pregunta]) %}
+          {% set ides = ides|merge([columna.id]) %}
+        {% endfor %}
+
+
+        {{ form_start(form) }}
+
+        {{ form_errors(form) }}
+
+        <div class="row">
+          <div class="col-md-6">
+            {{ form_row(form.nombre, { 'attr': {'size': '40'} }) }}
+          </div>
+          <div class="col-md-3">{{ form_row(form.edad, { 'attr': {'size': '4'} }) }}</div>
+          <div class="col-md-3">{{ form_row(form.sexo) }}</div>
+        </div>
+
+
+        <br><br>
+        
+        <h2 class="mb-5">¿Qué tan apto te consideras ...</h2>
+        {% for age in range(1, 55) %}
+          {{ age ~ '. ' ~ preguntas[age] }} <br>
+          <div class="bg-grisclaro p-2 ml-4">
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="1">Incompetente
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="2">Medianamente apto
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="3">Bastante apto      
+            <input class="ml-4 mr-1" type="radio" name="{{ ides[age] }}" value="4">Muy apto
+          </div>
+
+          <br><br>
+        {% endfor %}
+
+        {{ form_end(form) }}
+
+      </div>
+    </div>
+  {% endblock %}
+

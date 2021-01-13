@@ -1,0 +1,57 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %} Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}
+
+	{% block metatags %}
+		<meta name="robots" content="index, follow" /> 
+	{% endblock %}
+
+	{% block body %}
+		<div class="containeranchofondo">
+		</div>
+
+		<div class="containerancho mb-5 pb-3">
+				<div class="blog-main text-justify">
+					<div class="p-2">
+
+						<!--<div class="text-center my-3 btn btn-secondary btn-lg active" style="display:block; margin:auto; width:50%;" role="button" aria-pressed="true">
+			ORDENANDO IMÁGENES
+			</div>
+
+			<div id="" class="light_box" style="display:block; margin:auto; width:50%;">
+			Memorice las imágenes siguientes por el orden expuesto.
+			</div>-->
+
+				<div class="gallery py-3" style="position: fixed; top: 30%;">
+					<ul class="">
+						{% for imagenes in ppp2 %}
+							<li id="" class="p-0 m-0" style="width: {{ 100 // ppp2|length - 1 }}%"><img class="numerosmostrados" src="{{ asset('images/' ~ tipo ~ '/' ~ imagenes.filename ) }}" alt=""></li>
+						{%  endfor  %}
+					</ul>
+				</div>
+
+			{#<div class="text-center pt-3">
+				<a href="{{ path('ordenarimages', {tipo: tipo }) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+					COMENZAR ACTIVIDAD</a>
+			</div>#}
+
+					</div>              
+				</div>
+		</div>
+	{% endblock %}
+
+	{% block javascripts %}
+		{{ parent() }}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+							setTimeout(function() {
+											window.location.href = "{{ path('ordenarimages', {tipo: tipo }) }}";
+											//               }, 30000 );
+										}, "{{ ppp2|length }}" * 1000 );
+						});
+		</script>
+
+	{% endblock %}

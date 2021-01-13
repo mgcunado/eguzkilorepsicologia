@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+   <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+<script type="text/javascript">
+//Funcion que hace desaparecer el div transcurridos 3000 milisegundos!
+$(document).ready(function() {
+    setTimeout(function() {
+		// Declaramos la capa mediante una clase para ocultarlo
+        $("#dos").fadeOut(0);
+    },3000);
+
+     setTimeout(function() {
+		// Declaramos la capa mediante una clase para ocultarlo
+        $("#tres").fadeOut(0);
+    },3000);
+   
+});
+ 
+/*$(document).ready(function() {
+	setTimeout(function() {
+		// Declaramos la capa  mediante una clase para ocultarlo
+        $(".midiv2").fadeIn(1500);
+		// Transcurridos 5 segundos aparecera la capa midiv2
+    },5000);
+});*/
+ 
+</script>
+
+    <meta charset="UTF-8">
+    <title>Ejemplo de z-index</title>
+    <style>
+   .carta {
+      width: 4%;
+      margin-left: 2%;
+      float: left;
+   }
+
+
+   #uno {
+      position: absolute;
+      left: 185px;
+      top: 50px;
+      z-index: 1;
+   }
+
+   #dos {
+      position: absolute;
+      left: 230px;
+      top: 265px;
+      z-index: 2;
+   }
+
+   #tres { 
+      position: absolute;
+      left: 400px;
+      top: 380px;
+      z-index: 3;
+   }
+
+   #cuatro {
+      position: absolute;
+      left: 460px;
+      top: 360px;
+      z-index: 4;
+   }
+
+   #cinco {
+      position: absolute;
+      left: 275px;
+      top: 110px;
+      z-index: 5;
+   }
+    </style>
+</head>
+<body>
+      <div id="uno" class="carta">
+         <img src="{{ asset('images/geometria/circlebig.gif') }}">
+   </div>
+
+   <div id="dos" class="carta">
+      <img src="{{ asset('images/geometria/circulorojo.gif') }}">
+   </div>
+
+   <div id="tres" class="carta">
+      <img src="{{ asset('images/geometria/triangulopurpura.gif') }}">
+   </div>
+
+  <div id="cuatro" class="carta">
+     <img src="{{ asset('images/geometria/elipseamarillo.gif') }}">
+   </div>
+
+   <div id="cinco" class="carta">
+      <img src="{{ asset('images/geometria/rectangulogris.gif') }}">
+   </div>
+</body>
+</html> 

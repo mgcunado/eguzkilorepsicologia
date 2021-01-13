@@ -1,0 +1,102 @@
+{% extends 'frontend.html.twig' %}
+
+{% block title %}Tarifas - Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}
+
+  {% block metatags %}
+<meta name="robots" content="index, follow" />
+  <meta name="keywords" content="“psicólogo irun”, “psicólogo en irun”, “psicóloga irun”, “psicóloga en irun”, psicólogo, psicóloga, psicología, “tabla de tarifas”, “tabla de precios”, “tabla tarifas”, “tabla precios”, tarifa, tarifas, precio, precios, consulta, centro, irun, gipuzkoa, guipuzcoa, “psicología en irun”, “centro de psicología”, “centro eguzkilore”, “centro de psicología eguzkilore”, ayuda, solución, problema, “solucionar problema”, “solucionar problemas”, “gipuzkoa psicólogo”, “guipuzcoa psicólogo”" />
+    <meta name="description" content="Centro de Psicología Eguzkilore en Irun, Gipuzkoa. Tarifas: estudio y análisis previo, y sesión ordinaria" />
+    <meta property="og:title" content="Centro de Psicología Eguzkilore en Irun, Gipuzkoa. Tarifas" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Centro de Psicología Eguzkilore en Irun, Gipuzkoa. Tarifas: estudio y análisis previo, y sesión ordinaria" />
+  {% endblock %}
+
+
+  {% block body %}
+    <br><br>
+    <div class="container mb-5">
+      <div class="px-3">
+        {#{% for tarifas in ppp2 %}#}
+        <div class="row text-light bg-dark-morado- py-3 mt-4">
+          <div class="col-md-12 d-flex justify-content-center"><h3 class="mb-0" style="text-align:center;">Tarifas Centro de Psicología Eguzkilore {{ "now"|date("Y") }}</h3></div>
+          <div class="col-md-12 d-flex justify-content-center">(IVA incluido)</div>
+        </div>
+        <div class="row">
+          <div class="text-light bg-middledark-morado col-md-12 text-center font-weight-bold py-2" >Primera consulta informativa </div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-12">{{ 'GRATUITA' }} </div>
+        </div>
+
+        {# <div class="row">
+          <div class="text-light bg-middledark-morado col-md-12 text-center font-weight-bold py-2" >Recogida de datos, Estudio y Análisis previo:<br>
+            único, necesario y anterior a las sesiones </div>
+
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Duración</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Frecuencia</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Precio por el estudio</div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '120 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ 'una única vez' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '50' }} <i class="fas fa-euro-sign"></i></div>
+        </div>#}
+
+        <div class="row mb-1">
+          <div class="text-light bg-middledark-morado text-center col-md-12 font-weight-bold py-2" >Sesión Individual en el Centro Eguzkilore</div>
+
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Duración</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Frecuencia</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Precio por sesión</div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '60 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ 'semanal' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '40' }} <i class="fas fa-euro-sign"></i></div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '60 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ 'quincenal' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '50' }} <i class="fas fa-euro-sign"></i></div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '60 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ 'mensual' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '60' }} <i class="fas fa-euro-sign"></i></div>
+        </div>     
+
+         <div class="row mb-1">
+          <div class="text-light bg-middledark-morado text-center col-md-12 font-weight-bold py-2" >Sesión de Pareja en el Centro Eguzkilore</div>
+
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Duración</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Frecuencia</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Precio por sesión</div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '90 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ 'semanal' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '55' }} <i class="fas fa-euro-sign"></i></div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '90 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ 'quincenal' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '65' }} <i class="fas fa-euro-sign"></i></div>
+        </div>     
+
+        <div class="row mb-1">
+        </div>
+
+        <div class="row mb-1">
+          <div class="text-light bg-middledark-morado text-center col-md-12 font-weight-bold py-2" >Servicio de Orientación Profesional</div>
+
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Duración</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Sesiones</div>
+          <div class="text-center text-light bg-light-morado py-1 col-md-4" >Precio Total del Servicio</div>
+
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '120 - 180 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '2 - 3 sesiones de 60 minutos' }} </div>
+          <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-4">{{ '80 - 120' }} <i class="fas fa-euro-sign"></i></div>
+        </div>     
+
+        <div class="row mb-1">
+          <div class="bg-dark-morado- col-md-3 col-sm-0" ></div>
+          <div class="small align-middle bg-dark-morado- col-md-9 col-sm-12 p-0"><!--{{ '<strong>nota</strong>: la frecuencia de las sesiones se acordará en acuerdo con la persona interesada.' }}--></div>
+        </div>
+
+
+      </div>
+    </div>
+  {% endblock %}

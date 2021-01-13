@@ -1,0 +1,356 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}
+   Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore
+{% endblock %}
+
+{% block metatags %}
+   <meta name="robots" content="index, follow" /> 
+{% endblock %}
+
+{% block body %}
+   <style>
+.carta {
+   width: 4%;
+   margin-left: 2%;
+   float: left;
+   display: inherit;
+}
+
+   #comprobar {
+      position: absolute;
+      left: 20px;
+      top: 490px;
+      z-index: 9999999999999999999999999;
+   }
+
+   #uno {
+      position: absolute;
+      left: {{ xarray.0 ~ 'px' }};
+      top: {{ yarray.0 ~ 'px' }};
+      z-index: 1;
+   }
+
+   #dos {
+      position: absolute;
+      left: {{ xarray.1 ~ 'px' }};
+      top: {{ yarray.1 ~ 'px' }};
+      z-index: 2;
+   }
+
+   #tres { 
+      position: absolute;
+      left: {{ xarray.2 ~ 'px' }};
+      top: {{ yarray.2 ~ 'px' }};
+      z-index: 3;
+   }
+
+   #cuatro {
+      position: absolute;
+      left: {{ xarray.3 ~ 'px' }};
+      top: {{ yarray.3 ~ 'px' }};
+      z-index: 4;
+   }
+
+   #cinco {
+      position: absolute;
+      {% if xarray.4 is defined %}
+         left: {{ xarray.4 ~ 'px' }};
+         top: {{ yarray.4 ~ 'px' }};
+      {% endif %}
+      z-index: 5;
+   }
+
+   #seis {
+      position: absolute;
+      {% if xarray.5 is defined %}
+         left: {{ xarray.5 ~ 'px' }};
+         top: {{ yarray.5 ~ 'px' }};
+      {% endif %}
+      z-index: 6;
+   }
+   #siete {
+      position: absolute;
+      {% if xarray.6 is defined %}
+         left: {{ xarray.6 ~ 'px' }};
+         top: {{ yarray.6 ~ 'px' }};
+      {% endif %}
+      z-index: 7;
+   }
+   #ocho {
+      position: absolute;
+      {% if xarray.7 is defined %}
+         left: {{ xarray.7 ~ 'px' }};
+         top: {{ yarray.7 ~ 'px' }};
+      {% endif %}
+      z-index: 8;
+   }
+   #nueve {
+      position: absolute;
+      {% if xarray.8 is defined %}
+         left: {{ xarray.8 ~ 'px' }};
+         top: {{ yarray.8 ~ 'px' }};
+      {% endif %}
+      z-index: 9;
+   }
+   #diez {
+      position: absolute;
+      {% if xarray.9 is defined %}
+         left: {{ xarray.9 ~ 'px' }};
+         top: {{ yarray.9 ~ 'px' }};
+      {% endif %}
+      z-index: 10;
+   }
+
+   #once {
+      position: absolute;
+      left: {{ xarray.10 ~ 'px' }};
+      top: {{ yarray.10 ~ 'px' }};
+      z-index: 11;
+   }
+
+   #doce {
+      position: absolute;
+      left: {{ xarray.11 ~ 'px' }};
+      top: {{ yarray.11 ~ 'px' }};
+      z-index: 12;
+   }
+
+   #trece { 
+      position: absolute;
+      left: {{ xarray.12 ~ 'px' }};
+      top: {{ yarray.12 ~ 'px' }};
+      z-index: 13;
+   }
+
+   #catorce {
+      position: absolute;
+      left: {{ xarray.13 ~ 'px' }};
+      top: {{ yarray.13 ~ 'px' }};
+      z-index: 14;
+   }
+
+   #quince {
+      position: absolute;
+      {% if xarray.14 is defined %}
+         left: {{ xarray.14 ~ 'px' }};
+         top: {{ yarray.14 ~ 'px' }};
+      {% endif %}
+      z-index: 15;
+   }
+
+   #dieciseis {
+      position: absolute;
+      {% if xarray.15 is defined %}
+         left: {{ xarray.15 ~ 'px' }};
+         top: {{ yarray.15 ~ 'px' }};
+      {% endif %}
+      z-index: 16;
+   }
+   #diecisiete {
+      position: absolute;
+      {% if xarray.16 is defined %}
+         left: {{ xarray.16 ~ 'px' }};
+         top: {{ yarray.16 ~ 'px' }};
+      {% endif %}
+      z-index: 17;
+   }
+   #dieciocho {
+      position: absolute;
+      {% if xarray.17 is defined %}
+         left: {{ xarray.17 ~ 'px' }};
+         top: {{ yarray.17 ~ 'px' }};
+      {% endif %}
+      z-index: 18;
+   }
+   #diecinueve {
+      position: absolute;
+      {% if xarray.18 is defined %}
+         left: {{ xarray.18 ~ 'px' }};
+         top: {{ yarray.18 ~ 'px' }};
+      {% endif %}
+      z-index: 19;
+   }
+   #veinte {
+      position: absolute;
+      {% if xarray.19 is defined %}
+         left: {{ xarray.19 ~ 'px' }};
+         top: {{ yarray.19 ~ 'px' }};
+      {% endif %}
+      z-index: 20;
+   }
+   </style>
+
+   <div class="containerancho mb-5 pb-0">
+      <div class="carta" >
+         <img id="{{ ordinales.0 }}" src="{{ asset('images/animales/' ~ imagenes.0 ) }}">
+         <img id="{{ ordinales.0 }}" style="z-index:99;" class="tapon0" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+      </div>
+
+         <div class="carta">
+            <img id="{{ ordinales.1 }}" src="{{ asset('images/animales/' ~ imagenes.1 ) }}">
+            <img id="{{ ordinales.1 }}" style="z-index:99;" class="tapon1" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+         </div>
+
+         <div class="carta">
+            <a>
+               <img id="{{ ordinales.2 }}" class="tres" src="{{ asset('images/animales/' ~ imagenes.2 ) }}"></a>
+            <img id="{{ ordinales.2 }}" style="z-index:99;" class="tapon2" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+         </div>
+
+         <div class="carta">
+            <img id="{{ ordinales.3 }}" src="{{ asset('images/animales/' ~ imagenes.3 ) }}">
+            <img id="{{ ordinales.3 }}" style="z-index:99;" class="tapon3" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+         </div>
+
+         {% if ordinales.4 is defined %}
+            <div class="carta" >
+               <img id="{{ ordinales.4 }}" src="{{ asset('images/animales/' ~ imagenes.4 ) }}">
+               <img id="{{ ordinales.4 }}" style="z-index:99;" class="tapon4" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+         {% endif %}
+
+         {% if ordinales.5 is defined %}
+            <div class="carta" >
+               <img id="{{ ordinales.5 }}" src="{{ asset('images/animales/' ~ imagenes.5 ) }}">
+               <img id="{{ ordinales.5 }}" style="z-index:99;" class="tapon5" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+         {% endif %}
+
+         {% if ordinales.6 is defined %}
+            <div class="carta" >
+               <img id="{{ ordinales.6 }}" src="{{ asset('images/animales/' ~ imagenes.6 ) }}">
+               <img id="{{ ordinales.6 }}" style="z-index:99;" class="tapon6" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+         {% endif %}
+
+         {% if ordinales.7 is defined %}
+            <div class="carta" >
+               <img id="{{ ordinales.7 }}" src="{{ asset('images/animales/' ~ imagenes.7 ) }}">
+               <img id="{{ ordinales.7 }}" style="z-index:99;" class="tapon7" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+         {% endif %}
+
+         {% if ordinales.8 is defined %}
+            <div class="carta" >
+               <img id="{{ ordinales.8 }}" src="{{ asset('images/animales/' ~ imagenes.8 ) }}">
+               <img id="{{ ordinales.8 }}" style="z-index:99;" class="tapon8" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+         {% endif %}
+
+         {% if ordinales.9 is defined %}
+            <div class="carta" >
+               <img id="{{ ordinales.9 }}" src="{{ asset('images/animales/' ~ imagenes.9 ) }}">
+               <img id="{{ ordinales.9 }}" style="z-index:99;" class="tapon9" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+         {% endif %}
+
+         <div class="carta" >
+            <img id="{{ ordinales.10 }}" src="{{ asset('images/animales/' ~ imagenes.10 ) }}">
+            <img id="{{ ordinales.10 }}" style="z-index:99;" class="tapon10" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+         </div>
+
+            <div class="carta">
+               <img id="{{ ordinales.11 }}" src="{{ asset('images/animales/' ~ imagenes.11 ) }}">
+               <img id="{{ ordinales.11 }}" style="z-index:99;" class="tapon11" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+
+            <div class="carta">
+               <img id="{{ ordinales.12 }}" src="{{ asset('images/animales/' ~ imagenes.12 ) }}">
+               <img id="{{ ordinales.12 }}" style="z-index:99;" class="tapon12" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+
+            <div class="carta">
+               <img id="{{ ordinales.13 }}" src="{{ asset('images/animales/' ~ imagenes.13 ) }}">
+               <img id="{{ ordinales.13 }}" style="z-index:99;" class="tapon13" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+            </div>
+
+            {% if ordinales.14 is defined %}
+               <div class="carta" >
+                  <img id="{{ ordinales.14 }}" src="{{ asset('images/animales/' ~ imagenes.14 ) }}">
+                  <img id="{{ ordinales.14 }}" style="z-index:99;" class="tapon14" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+               </div>
+            {% endif %}
+
+            {% if ordinales.15 is defined %}
+               <div class="carta" >
+                  <img id="{{ ordinales.15 }}" src="{{ asset('images/animales/' ~ imagenes.15 ) }}">
+                  <img id="{{ ordinales.15 }}" style="z-index:99;" class="tapon15" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+               </div>
+            {% endif %}
+
+            {% if ordinales.16 is defined %}
+               <div class="carta" >
+                  <img id="{{ ordinales.16 }}" src="{{ asset('images/animales/' ~ imagenes.16 ) }}">
+                  <img id="{{ ordinales.16 }}" style="z-index:99;" class="tapon16" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+               </div>
+            {% endif %}
+
+            {% if ordinales.17 is defined %}
+               <div class="carta" >
+                  <img id="{{ ordinales.17 }}" src="{{ asset('images/animales/' ~ imagenes.17 ) }}">
+                  <img id="{{ ordinales.17 }}" style="z-index:99;" class="tapon17" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+               </div>
+            {% endif %}
+
+            {% if ordinales.18 is defined %}
+               <div class="carta" >
+                  <img id="{{ ordinales.18 }}" src="{{ asset('images/animales/' ~ imagenes.18 ) }}">
+                  <img id="{{ ordinales.18 }}" style="z-index:99;" class="tapon18" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+               </div>
+            {% endif %}
+
+            {% if ordinales.19 is defined %}
+               <div class="carta" >
+                  <img id="{{ ordinales.19 }}" src="{{ asset('images/animales/' ~ imagenes.19 ) }}">
+                  <img id="{{ ordinales.19 }}" style="z-index:99;" class="tapon19" src="{{ asset('images/numeros/8rotateborder.png' ) }}">
+               </div>
+            {% endif %}
+
+
+            {# botón comprobar imágenes desaparecidas #}
+            <div class="midiv2" style="display:none;">
+               <a href="javascript:void(0);" class="btn outlined mleft_no reorder_link" id="comprobar">Comprobar Desapariciones</a>
+            </div>  
+            {# fin botón comprobar imágenes desaparecidas #}
+
+   </div>
+{% endblock %}
+
+{% block javascripts %}
+   {{ parent() }}
+
+   {% set milisegundos = cantidadimages * 1000 %}
+   <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>   
+   <script type="text/javascript">
+      var par = 0;
+      $(document).ready(function() {
+               {% for i in 0..19 %}
+                  $("{{ '.tapon' ~ i }}").click(function( e ){
+                           {% if i < 10 %}
+                              {% set  ii = i + 1 %} 
+                           {% else %}
+                              {% set  ii = i - 9 %} 
+                           {% endif %}
+
+                           {# if (par < 2) {
+     $('#{{ ordinales[i] }}').attr("src","{{ asset('images/animales/' ~ ii ~ '.jpg') }}");
+     $('#{{ ordinales[i] }}').css("border","5px solid #f00");
+     $('#{{ ordinales[i] }}').attr("class","par_descubierto");
+     par = par + 1;
+     } else {
+     $('.par_descubierto').attr("src","{{ asset('images/numeros/1.png') }}");
+     par = 0;
+     } #}                 
+
+                           setTimeout(function() {
+                                    // Declaramos la capa mediante una clase para ocultarlo
+                                    $( "{{ '.tapon' ~ i }}" ).fadeOut(500);
+                                 }, 0 );
+                        });
+               {% endfor %}         
+            });
+   </script>
+
+{% endblock %}
+

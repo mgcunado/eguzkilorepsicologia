@@ -1,0 +1,91 @@
+{% extends 'facturas/base_factura.html.twig' %}
+
+{% block body %}
+  {% for factura in ppp1 %}
+    <div class="row my-4 mx-5">
+      <div class="col-md-4 p-2 mr-4 text-center border border-primary rounded">
+          FECHA
+          <hr class="my-0 py-0">
+          {{ factura.fechafactura|date('d-m-Y') }}  
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-4 px-5 py-2 text-center bg-secondary-dark text-light rounded-plus">
+        Factura Nº:<br>
+        {{ factura.numerofactura }}
+      </div>
+    </div>
+
+    <div class="row my-5 mx-5">
+      <div class="col-md-4 text-center border border-primary rounded mx-4">
+        MODO DE PAGO
+        <hr class="my-0 py-0">
+        {{ factura.modopago }}
+      </div>
+      <div class="col-md-6 text-center border border-primary rounded mx-4">
+        {{ factura.nombre }}
+        <hr class="my-0 py-0"> {{ factura.direccion }}
+      </div>
+    </div>
+
+    <div class="row my-5 mx-5">
+      <div class="pb-5 col-md-1 text-center border border-primary" style="height:350px;">
+        REF
+        <hr class="my-1 py-0">
+        {{ factura.referencia }}
+      </div>
+      <div class="pb-5 col-md-6 text-center border-top-1 border-bottom-1 border-right-1 border-primary">
+        CONCEPTO
+        <hr class="my-1 py-0">
+        {{ factura.producto }}
+      </div>
+      <div class="pb-5 col-md-3 text-center border-top-1 border-bottom-1 border-primary">
+        DURACIÓN
+        <hr class="my-1 py-0">
+        {{ factura.duracion }}
+      </div>
+      <div class="pb-5 col-md-2 text-center border border-primary">
+        IMPORTE
+        <hr class="my-1 py-0">
+        {{ factura.importe }}
+      </div>
+    </div>
+
+    <div class="row  my-5 mx-3">
+      <div class="col-md-7"></div>
+      <div class="col-md-5 text-center border border-primary rounded">
+        <div class="row">
+          <div class="col-md-4 border-right-1">
+            <hr class="my-0 py-0">
+
+            <div class="my-2">&nbsp;</div>  
+            <div class="my-2">SUBTOTAL</div>  
+            <div class="my-2">IVA(21%)</div>  
+            <div class="my-2">TOTAL</div>  
+          </div>
+          <div class="col-md-8">
+            <div class="my-2">{{ 'EUROS' }}</div>  
+            <hr class="my-0 py-0">
+            <div class="my-2"> {{ factura.importe }} &euro;</div>       
+            <div class="my-2">{{ (factura.importe * 0.21)|number_format(2, '.', ',') }} &euro;</div>    
+            <div class="my-2">{{ (factura.importe * 1.21)|number_format(0, '.', ',') }} &euro;</div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# archivo PDF #}
+    <div class="row">
+      <div class="col-md-9"></div>
+      <div class="col-md-3 pt-5">
+        <a class="nav-link" href="{{ path('pdfimpfacturas', {'numerofactura': factura.numerofactura }) }}"  >Descargar PDF<br><img src="{{ asset('images/pdficon.png') }}"></a>
+      </div>
+    </div>
+    {# fin archivo PDF #}
+
+  {%  endfor  %}
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+

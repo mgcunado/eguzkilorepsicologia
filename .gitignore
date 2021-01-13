@@ -1,0 +1,14 @@
+
+###> symfony/framework-bundle ###
+.env
+.env.dist
+/materialnoweb/
+/node_modules/
+/var/
+/vendor/
+###< symfony/web-server-bundle ###
+
+###> salvados previamente en remoto en otro dir
+/public/bundles/
+/public/images/
+/public/matomo/

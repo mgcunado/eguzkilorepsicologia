@@ -1,0 +1,53 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %} Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}
+
+	{% block metatags %}
+		<meta name="robots" content="index, follow" /> 
+	{% endblock %}
+
+	{% block body %}
+		<div class="container mb-5 pb-3">
+			<div class="row">
+				<div class="col-md-12 blog-main text-justify">
+					<div class="p-2">
+
+						<div class="text-center my-3 btn btn-secondary btn-lg active" style="display:block; margin:auto; width:50%;" role="button" aria-pressed="true">
+                     {% if tipo == 'geometria' %}
+                     OBSERVANDO OBJETOS
+                     {% elseif tipo == 'formarpares' %}
+                        LOCALIZANDO PARES
+                     {% else %}
+                        ORDENANDO IMÁGENES
+                     {% endif %}
+						</div>
+
+						<form name="formulario" method=" GET" action="">
+                     <div class="row">
+                        <div class="{% if tipo == 'geometria' %} col-md-6 {% else %} col-md-12 {% endif %}">
+                     {% if tipo == 'geometria' %}
+                           <div class="text-center py-2 text-center">Introducir la Cantidad de Imágenes a observar (entre 4 y 10):</div>
+							<div class="text-center pb-2"><input type="number" name="cantidadimages" min="4" max="10" value="6"></div>
+                     {% elseif tipo == 'formarpares' %}
+                            <div class="text-center py-2 text-center">Localizar los 10 pares escondidos entre las cartas Eguzkilore!</div>
+							<div class="text-center pb-2"><input type="hidden" name="cantidadimages" min="4" max="10" value="6"></div>
+                     {% else %}
+                            <div class="text-center py-2 text-center">Introducir la Cantidad de Imágenes a ordenar (entre 4 y 10):</div>
+							<div class="text-center pb-2"><input type="number" name="cantidadimages" min="4" max="10" value="6"></div>
+                     {% endif %}
+                        </div> 
+{% if tipo == 'geometria' %}
+                        <div class="col-md-6">
+                           <div class="text-center py-2 text-center">Introducir la Cantidad de Imágenes a desaparecer (entre 1 y 4):</div>
+							<div class="text-center pb-2"><input type="number" name="cantimgdesaparecidas" min="2" max="4" value="2"></div>
+                        </div> 
+
+{% endif %} 
+							<div class="col-md-12 text-center "><input type="submit" value="Iniciar"></div>
+                     </div> 
+						</form>
+					</div>              
+				</div>
+			</div>
+		</div>
+	{% endblock %}

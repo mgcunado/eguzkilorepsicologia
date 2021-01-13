@@ -1,0 +1,43 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %} Juegos - Psicólogo en Irun - Centro de Psicología Eguzkilore{% endblock %}
+
+   {% block metatags %}
+      <meta name="robots" content="index, follow" /> 
+   {% endblock %}
+
+   {% block body %}
+      <div class="container mb-5 pb-3">
+         <div class="row text-center">
+            <div class="col-md-12 blog-main text-justify">
+               <div class="text-center my-2 bg-secondary text-light py-2" style="font-weight: bolder; display:block; margin:auto; width:50%;" role="button" aria-pressed="true">
+                  ORDENANDO IMÁGENES
+               </div>
+            </div>
+
+            <div class="col-md-6">
+               <a href="{{ path('juegos', {tipo: 'animales' }) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                  <img src="{{ asset('images/animales.png' ) }}" alt=""></a>
+            </div>                  
+            <div class="col-md-6">
+               <a href="{{ path('juegos', {tipo: 'numeros' }) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                  <img src="{{ asset('images/numeros.png' ) }}" alt=""></a>
+            </div>                  
+
+            <div class="col-md-12 blog-main text-justify mt-5">
+               <div class="text-center my-2 bg-secondary text-light py-2" style="font-weight: bolder; display:block; margin:auto; width:50%;" role="button" aria-pressed="true">
+                  OBSERVANDO OBJETOS
+               </div>
+            </div>
+
+            <div class="col-md-6">
+               <a href="{{ path('juegos', {tipo: 'geometria' }) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                  <img src="{{ asset('images/geometria.png' ) }}" alt=""></a>
+            </div>                  
+            <div class="col-md-6">
+               <a href="{{ path('juegos', {tipo: 'formarpares' }) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                  <img src="{{ asset('images/formarpares.png' ) }}" alt=""></a>
+            </div>                  
+         </div>
+      </div>
+   {% endblock %}

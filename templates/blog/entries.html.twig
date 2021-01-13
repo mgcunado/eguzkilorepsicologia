@@ -1,0 +1,106 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}
+   Blog - Artículos - Psicólogo en Irun - Centro Eguzkilore de Psicología
+{% endblock %}
+
+{% block metatags %}
+<meta name="robots" content="index, follow" />  
+{% endblock %}
+
+{% block body %}
+   <div class="container mb-5 pt-5 pb-0">
+      <!--<div class="blog-header">
+         <h1 class="blog-title">Blog del Centro de Psicología Eguzkilore en Irun</h1>
+         <p class="lead blog-description">Se presenta este Blog en el que abordaré temática en Psicología de actualidad o que pudiear interesar al público.</p>
+         </div>-->
+
+         <div class="row">
+            <div class="col-md-12 blog-main text-justify">
+               {% for blogPost in blogPosts %}
+                  {#{% set paragraphs = blogPost.description|split('</p>') %}
+                  {% set firstParagraph = paragraphs|first ~ '</p>' %}#}
+                  <div class="blog-post">
+                     <h2 class="blog-post-title">
+                        <a href="{{ path('entry', {'slug': blogPost.slug}) ~ '#psicologiaenirun' }}">
+                           {{ blogPost.title|raw }}
+                        </a>   
+                     </h2>
+                     <p class="blog-post-meta">
+                     {{ blogPost.getCreatedAt|date('l') |replace({
+                     'Monday'   : 'Lunes',
+                     'Tuesday' : 'Martes',
+                     'Wednesday' : 'Miercoles',
+                     'Thursday' : 'Jueves',
+                     'Friday' : 'Viernes',
+                     'Saturday' : 'Sábado',
+                     'Sunday'   : 'Domingo'
+                     }) ~ ', ' }}  
+
+                     {{ blogPost.getCreatedAt|date('j') ~ ' de ' }}
+
+
+                     {{ blogPost.getCreatedAt|date('F') |replace({
+                     'January'  : 'Enero',
+                     'February'  : 'Febrero',
+                     'March'  : 'Marzo',
+                     'April'  : 'Abril',
+                     'May'  : 'Mayo',
+                     'June'  : 'Junio',
+                     'July'  : 'Julio',
+                     'August'  : 'Agosto',
+                     'September'  : 'Septiembre',
+                     'October'  : 'Octubre',
+                     'November'  : 'Noviembre',
+                     'December' : 'Diciembre'
+                     }) ~ ' de ' }}
+
+                     {{ blogPost.getCreatedAt|date('Y') }} <br>  {{ ' escrito por la Psicóloga ' }}
+
+                        <a href="{{ path('sobremi') ~ '#psicologiaenirun' }}">
+                           {{ 'Gloria D\'Alessandro' }}
+                        </a>    
+                     </p>
+                     <div class="articulo-font pt-0 pb-5">
+                        {#{{ firstParagraph|raw }}#}
+                        {{ blogPost.description|raw }}
+
+                        <a href="{{ path('entry', {'slug': blogPost.slug}) }}">Leer más</a>
+                     </div>
+                  </div>
+               {% else %}
+                  <div class="alert alert-danger" role="alert">
+                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                     <span class="sr-only">Error:</span>
+                     No tienes artículos en el Blog. Por favor, identifícate y crea un artículo.
+                  </div>
+               {% endfor %}
+
+               {% set canPrevious = page > 1 %}
+               {% set canNext = (page * entryLimit) < totalBlogPosts %}
+               <nav class="navbar navbar-default navbar-fixed-top">
+                  <div id="navbar" class="navbar navbar-expand-lg">
+                     <ul class="pager nav navbar-nav">
+                        {% if canPrevious == true %}
+                           <li class="previous pr-4">
+                              <a href="{% if canPrevious %}{{ path('entries', {'page': page - 1}) }}{% endif %}">
+                                 <span aria-hidden="true">&larr;</span> Más recientes
+                              </a>
+                           </li>
+                        {% endif %}
+
+                        {% if canNext == true %}
+                           <li class="next pl-4">
+                              <a href="{% if canNext %}{{ path('entries', {'page': page + 1}) }}{% endif %}">
+                                 Más antigüos<span aria-hidden="true">&rarr;</span>
+                              </a>
+                           </li>
+                        {% endif %}                  
+                     </ul>
+                  </div>
+               </nav>
+            </div>
+         </div>
+   </div>
+
+{% endblock %}

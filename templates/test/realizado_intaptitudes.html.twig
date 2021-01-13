@@ -1,0 +1,78 @@
+{% extends "articulos.html.twig" %}
+
+{% block title %}Centro de Psicología Eguzkilore : Test : Intereses de Aptitudes {% endblock %}
+
+  {% block metatags %}
+    <meta name=”robots” content=”noindex,nofollow”>
+  {% endblock %}
+
+  {% block body %}
+    <div class="container mb-5 pb-0">
+
+      <div class="mx-5">
+        <h1 class="mb-5 mt-3 text-center text-azuloscuro">Resultado del Test de Intereses de Aptitudes</h1>
+
+        <div class="row">        
+          <div class="text-center text-dark bg-nombreedadsexo0 pl-4 py-0 col-md-6" >Nombre: <strong>{{ nombre }} </strong> </div>
+          <div class="text-center text-dark bg-nombreedadsexo pl-4 py-0 col-md-3" >Edad: <strong>{{ edad }} </strong> </div>
+          <div class="text-center text-dark bg-nombreedadsexo2 pl-4 py-0 col-md-3" >Sexo: <strong>{{ sexo }} </strong> </div>
+        </div>        
+
+        <br><br>
+
+        {% set arrayordenado = arrayordenado|sort|reverse %}
+
+        <div class="row text-light bg-dark-morado- py-3 mt-4">
+          <div class="col-md-12 d-flex justify-content-center"><h3 class="mb-0" style="text-align:center;">Clasificación</h3></div>
+        </div>
+        <div class="row">
+          <div class="text-light bg-middledark-morado col-md-12 text-center font-weight-bold py-2" >Aptitudes Dominantes:</div>
+
+          {% set a = 1 %}
+
+          {% for slug, item in arrayordenado %}
+
+            {% if a==1 %} 
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" > {{ 'Primer lugar ' }} </div>
+            {% elseif a==2 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" >                   {{ 'Segundo lugar ' }} </div>
+            {% elseif a==3 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" >                  {{ 'Tercer lugar ' }} </div> 
+            {% elseif a==4 %}
+              <div class="text-center text-light bg-middledark-morado py-0 col-md-12" > </div>                
+            {% endif %}
+
+            {% if a < 4 %}            
+              <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-12">
+                {{ slug ~ ' : ' ~ item }}
+              </div>
+            {% else %}
+              <div class="align-middle text-center bg-gris-datos pt-2 pb-4 col-md-12">
+                {{ slug ~ ' : ' ~ item }}
+              </div>
+            {% endif %}
+
+            {% set a = a + 1 %}
+
+
+          {% endfor %}
+        </div>
+
+
+        {# archivo PDF #}
+
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3 pt-5">
+            <a class="nav-link" href="{{ path('test_intaptitudes_pdf', {'nombre': nombre, 'edad': edad, 'sexo': sexo, 'Verbal' : Verbal, 'Numericas' : Numericas, 'Mecanica_constructiva' : Mecanica_constructiva, 'Artistico_plastica' : Artistico_plastica, 'Musical' : Musical, 'Cientifica' : Cientifica, 'Social' : Social, 'Destreza_manual' : Destreza_manual, 'Practica' : Practica, 'Ejecutiva' : Ejecutiva, 'Trabajo_de_oficina' : Trabajo_de_oficina, 'arrayordenado' : arrayordenado}) }}"  >Descargar PDF<br><img src="{{ asset('images/pdficon.png') }}"></a>
+          </div>
+        </div>
+
+
+        {# fin archivo PDF #}
+
+
+      </div>
+    </div>
+            {% endblock %}
+

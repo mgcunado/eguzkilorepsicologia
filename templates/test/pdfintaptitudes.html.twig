@@ -1,0 +1,68 @@
+{% extends "test/pdfarticulos.html.twig" %}
+
+{% block title %}Centro de Psicología Eguzkilore : Test : Intereses de Aptitudes {% endblock %}
+
+  {% block body %}
+    <div class="container mb-0 pb-4">
+
+      <div class="mx-2">
+        <h1 class="text-center text-azuloscuro mt-3">Resultado del Test de Intereses de Aptitudes</h1>
+        <div class="my-5">   </div>
+        <div class="row">        
+          <div class="col-md-12">
+            <div class="text-center text-dark bg-nombreedadsexo0 pl-4 py-0 divmediopdf" >Nombre: <strong>{{ nombre }} </strong> </div>
+            <div class="text-center text-dark bg-nombreedadsexo pl-4 py-0 divcuartopdf" >Edad: <strong>{{ edad }} </strong> </div>
+            <div class="text-center text-dark bg-nombreedadsexo2 pl-4 py-0 divcuartopdf" >Sexo: <strong>{{ sexo }} </strong> </div>
+          </div>
+        </div>        
+
+        <br><br>
+
+        {% set arrayordenado = arrayordenado|sort|reverse %}
+
+        <div class="row text-light bg-dark-morado- py-3 mt-4">
+          <div class="col-md-12 d-flex justify-content-center"><h3 class="mb-0" style="text-align:center;">Clasificación</h3></div>
+        </div>
+        <div class="row">
+          <div class="text-light bg-middledark-morado col-md-12 text-center font-weight-bold py-2" >Aptitudes Dominantes:</div>
+
+          {% set a = 1 %}
+
+          {% for slug, item in arrayordenado %}
+
+            {% if a==1 %} 
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" > {{ 'Primer lugar ' }} </div>
+            {% elseif a==2 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" >                   {{ 'Segundo lugar ' }} </div>
+            {% elseif a==3 %}
+              <div class="text-center text-light bg-light-morado py-1 col-md-12" >                  {{ 'Tercer lugar ' }} </div> 
+            {% elseif a==4 %}
+              {# línea horizontal morada #}
+              <div class="text-center text-light bg-middledark-morado py-0 col-md-12" > </div>                
+            {% endif %}
+
+            {% if a < 4 %}            
+              <div class="align-middle text-center bg-morado-datos pt-2 pb-4 col-md-12">
+                {{ slug ~ ' : ' ~ item }}
+              </div>
+
+            {% elseif a == 4 or a == 7 or a == 10 %}
+              <div class="align-middle text-center bg-gris-datos pt-2 pb-4 col-12">
+                <div class="divterciopdf"> {{ slug ~ ' : ' ~ item }}</div>
+            {% elseif a == 6 or a == 9 or a == 11 %}
+              <div class="divterciopdf"> {{ slug ~ ' : ' ~ item }}</div>
+              </div>
+            {% else %}
+              <div class="divterciopdf"> {{ slug ~ ' : ' ~ item }}</div>
+            {% endif %}
+
+            {% set a = a + 1 %}
+
+
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  {% endblock %}
+
