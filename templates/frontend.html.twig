@@ -5,21 +5,21 @@
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}" />
 
-	<style>       
+	<style>
 .container {
 	background-color: #eddff4;
-	padding: 1rem 1rem 3rem 1rem;      
+	padding: 1rem 1rem 3rem 1rem;
 	/*padding: 25px 50px 75px 100px;*/
 	border-style: solid;
 	border-width: 1px;
 	border-color: #555;
-}     
+}
 	</style>
 
-	<link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">    
-	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">   
+	<link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
 {% endblock %}
 
 {% block carousel %}
@@ -76,7 +76,7 @@
 
 							<li class="{% if menu.id == 9 %} btn btn-outline-danger nav-item {% elseif menu.id == 7 %} btn btn-warning nav-item {% else %} nav-item px-2 {% endif %} {% if menu.id == linka %} active {% endif %} ">
 
-								{% if menu.enlace == 'inicio' %}                        
+								{% if menu.enlace == 'inicio' %}
 									<a class="nav-link" href="{{ path(menu.enlace) }}">{{ menu.titulo  }}<span class="sr-only">(current)</span></a>
 								{% elseif menu.enlace == 'tarifas' %}
 									<a class="nav-link text-dark" href="{{ path(menu.enlace) ~ '#psicologiaenirun' }}">{{ menu.titulo  }}<span class="sr-only">(current)</span></a>
@@ -95,6 +95,7 @@
 {% endblock %}
 
 {% block javascripts %}
+   {{ parent() }}
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"> </script>
