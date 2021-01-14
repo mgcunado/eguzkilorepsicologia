@@ -16,7 +16,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
     {% block metatags %}
-    {% endblock %}       
+    {% endblock %}
     {% block stylesheets %}
     {% endblock %}
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
@@ -52,7 +52,7 @@
           <p class='my-0 py-2'>Esta página utiliza cookies para mejorar tu experiencia de navegación. Si sigues navegando por la web aceptas su uso. <button type="button" class="btn btn-info py-0 ml-3" onclick="aceptar_cookies();" style="cursor:pointer;">Aceptar</button> <!--<a href="politica-privacidad.php">Más info</a>--></p>
         </div>
       </div>
-    {% endblock %}      
+    {% endblock %}
 
     {% block footer %}
       <div class="container-fluid bg-dark-morado-pie text-light">
@@ -63,8 +63,8 @@
             <div class="mb-1">Psicóloga Gloria Mabel <nobr>D'Alessandro Kaiser</nobr></div>
             <div class="mb-1" style="font-size:115%;"><i class="fas fa-mobile-alt"></i> 722 617 163 </div>
             <div class="contacto-font-email mb-1"><a href="mailto:gloria@eguzkilorepsicologia.es" target="_top"><span class="ml-4" style="color:white;"><nobr><i class="fas fa-envelope"></i> gloria@eguzkilorepsicologia.es</nobr></span> </a>
-            </div>   
-            <nobr>Avenida Salís 19</nobr> <nobr>Bajo Derecha,</nobr> <nobr>20304 Irun (Gipuzkoa)</nobr> 
+            </div>
+            <nobr>Avenida Salís 19</nobr> <nobr>Bajo Derecha,</nobr> <nobr>20304 Irun (Gipuzkoa)</nobr>
           </div>
           <div class="col-md-2 py-2">
             <a href="https://www.facebook.com/CentrodePsicologiaEguzkilore"  target="_blank">
@@ -75,14 +75,15 @@
 
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <div class="col-md-1"></div>
-            <div class="col-md-2 text-center py-2 my-3"   style="border: 1px solid #888;"><a href="{{ path('app_logout') }}">Cerrar Sesión</a></div>    
+            <div class="col-md-2 text-center py-2 my-3"   style="border: 1px solid #888;"><a href="{{ path('app_logout') }}">Cerrar Sesión</a></div>
             <div class="col-md-8"></div>
-          {% endif %}               
+          {% endif %}
         </div>
       </div>
     {% endblock %}
 
     {% block javascripts %}
+    <script src="{{ asset('js/matomo.js') }}"> </script>
     {% endblock %}
   </body>
 </html>
