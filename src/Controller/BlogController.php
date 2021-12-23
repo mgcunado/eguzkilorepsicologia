@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controller;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,9 +32,9 @@ class BlogController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ppp1 = $em->getRepository('App:Menu')->findMenus(); 
+        $ppp1 = $em->getRepository('App:Menu')->findMenus();
         $linka = 9;
-       
+
         $page = 1;
         if ($request->get('page')) {
             $page = $request->get('page');
@@ -48,7 +50,7 @@ class BlogController extends Controller
             'ppp1' => $ppp1, 'linka' => $linka
         ]);
     }
-    
+
     /**
      * @Route("/blog/{slug}", name="entry")
      */
@@ -58,18 +60,17 @@ class BlogController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $ppp1 = $em->getRepository('App:Menu')->findMenus(); 
+        $ppp1 = $em->getRepository('App:Menu')->findMenus();
         $linka = 8;
- 
+
         if (!$blogPost) {
             $this->addFlash('error', 'Unable to find entry!');
             return $this->redirectToRoute('entries', array(
-            'ppp1' => $ppp1, 'linka' => $linka
-          ));
+                'ppp1' => $ppp1, 'linka' => $linka
+            ));
         }
         return $this->render('blog/entry.html.twig', array(
             'blogPost' => $blogPost, 'ppp1' => $ppp1, 'linka' => $linka
         ));
     }
-
 }

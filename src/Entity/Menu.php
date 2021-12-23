@@ -16,13 +16,13 @@ class Menu
      */
     private $id;
 
-    
+
     /** @ORM\Column(length=30, name="titulo_es") */
     private $tituloEs;
 
     /** @ORM\Column(length=30) */
-    private $enlace;       
-    
+    private $enlace;
+
     //getters & setters
     public function getId()
     {
@@ -48,5 +48,4 @@ class Menu
     {
         $this->enlace = $enlace;
     }
-
 }

@@ -19,7 +19,6 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-
         $em = $this->getDoctrine()->getManager();
 
         $ppp1 = $em->getRepository('App:Menu')->findMenus();
@@ -35,5 +34,5 @@ class SecurityController extends AbstractController
     {
         // controller can be blank: it will never be executed!
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
-    }    
+    }
 }
